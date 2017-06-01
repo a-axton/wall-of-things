@@ -1,0 +1,9 @@
+.things {
+  display: flex;
+  flex-wrap: wrap;
+
+  span:last-child {
+    width: 100%;
+    flex: none;
+  }
+}

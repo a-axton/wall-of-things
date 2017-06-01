@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
+import classes from './Thing.scss';
 
-export default () => {
+export default (props) => {
+  let image = require(`assets/images/${props.image}`);
   let styles = {
-    background: 'url(//lorempixel.com/640/480)'
+    backgroundImage: `url(${image})`
   };
   return (
-    <li className='thing'>
-      <a href="#" className="thing-link" style={styles} alt=""></a>
-    </li>
+    <div className={classes.thing}>
+      <a href="#" className={classes.thingLink} style={styles} alt=""></a>
+    </div>
   );
 };

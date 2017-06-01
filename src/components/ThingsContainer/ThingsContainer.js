@@ -5,8 +5,16 @@ export default class ThingsContainer extends React.Component {
     super();
     this.state = {
       loading: true,
-      things: [{},{},{}]
+      thingsToLoad: 16,
+      things: []
     };
+    this.handleWaypointEnter = this.handleWaypointEnter.bind(this);
+  }
+
+  handleWaypointEnter () {
+    this.setState({
+      thingsToLoad: this.state.thingsToLoad + 4
+    })
   }
 
   componentWillMount () {
@@ -21,10 +29,14 @@ export default class ThingsContainer extends React.Component {
   }
 
   render () {
+    let things = this.state.things.slice(0, this.state.thingsToLoad);
     return (
       <div>
         {React.Children.map(this.props.children, (child) => {
-          return React.cloneElement(child, { ...this.state });
+          return React.cloneElement(child, {
+            things,
+            handleWaypointEnter: this.handleWaypointEnter
+          });
         })}
       </div>
     )
